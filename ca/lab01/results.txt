@@ -1,0 +1,17 @@
+java matrix.java
+2.737242434
+
+
+gcc matrix.c -o matrix
+./matrix
+6.078231
+
+
+gcc matrix_ikj.c -o matrix_ikj
+./matrix_ikj
+3.456507
+
+
+gcc matrix_jki.c -o matrix_jki
+./matrix_jki
+8.677833
