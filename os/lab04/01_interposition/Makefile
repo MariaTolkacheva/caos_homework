@@ -1,25 +1,31 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c2x -fPIC
+CFLAGS = -Wall -fPIC
 LDFLAGS = -ldl -lm
 
 TARGET = solution
-LIB1 = libfredjohn.so
-LIB2 = libbillsam.so
+LIBFREDJOHN = llibinterpose.a
+LIBBILLSAM = libbillsam.so
 
 all: $(TARGET)
 
-$(LIB1): fred.c john.c
+fred.o: fred.c lib.h
+	$(CC) $(CFLAGS) -c $< -o $@
+ 
+john.o: john.c lib.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBFREDJOHN): fred.o john.o
+	ar rcs $@ $^
+
+$(LIBBILLSAM): bill.c sam.c
 	$(CC) $(CFLAGS) -shared -o $@ $^ $(LDFLAGS)
 
-$(LIB2): bill.c sam.c
-	$(CC) $(CFLAGS) -shared -o $@ $^ $(LDFLAGS)
+$(TARGET): solution.c $(LIBFREDJOHN) $(LIBBILLSAM)
+	$(CC) $(CFLAGS) -o $@ solution.c -L. $(LIBFREDJOHN) -lbillsam -Wl,-rpath=. -lm
 
-
-$(TARGET): solution.c $(LIB1) $(LIB2)
-	$(CC) $(CFLAGS) -o $@ solution.c -L. -lfredjohn -lbillsam -Wl,-rpath=.
-
-run: $(TARGET) $(LIB2)
-	LD_PRELOAD=./$(LIB2) ./$(TARGET)
+run: $(TARGET) $(LIBBILLSAM)
+	LD_PRELOAD=./$(LIBBILLSAM) ./$(TARGET)
+	ldd ./$(TARGET)
 
 clean:
-	rm -f $(TARGET) $(LIB1) $(LIB2) *.o
+	rm -f $(TARGET) *.so *.a *.o
