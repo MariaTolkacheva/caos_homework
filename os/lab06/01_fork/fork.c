@@ -5,13 +5,16 @@
 #include <unistd.h>
 
 int main(void) {
-  printf("Hello from Parent\t");
+  printf("Hello from Parent\n");
+  fflush(stdout);
   pid_t pid = fork();
   if (pid == 0) {
-    printf("Hello from Child1\t");
+    printf("Hello from Child1\n");
+    fflush(stdout);
     pid_t pid2 = fork();
     if (pid2 == 0) {
-      printf("Hello from Child2\t");
+      printf("Hello from Child2\n");
+      fflush(stdout);
       exit(EXIT_SUCCESS);
     } else if (pid2 > 0) {
       waitpid(pid2, NULL, 0);
