@@ -115,7 +115,7 @@ jobs:
         working-directory: os/lab05/01_regex_replace
         run: make
 
-      - name: Run tests
+      - name: Run test_pip2redir.py
         working-directory: os/lab05/01_regex_replace
         run: python3 -m unittest discover -v tests
 
@@ -133,7 +133,7 @@ jobs:
       - name: Build
         working-directory: os/lab06/01_fork
         run: make
-      - name: Run tests
+      - name: Run test_pip2redir.py
         working-directory: os/lab06/01_fork
         run: python3 -m unittest discover -v tests
 
@@ -154,6 +154,221 @@ jobs:
         working-directory: os/lab06/02_outredir
         run: make
 
-      - name: Run tests
+      - name: Run test_pip2redir.py
         working-directory: os/lab06/02_outredir
+        run: python3 -m unittest discover -v tests
+
+  assignment4-allredir:
+    name: Assignment 4 – AllRedir
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+
+      - name: Build
+        working-directory: os/lab06/03_allredir
+        run: make
+
+      - name: Run test_pip2redir.py
+        working-directory: os/lab06/03_allredir
+        run: python3 -m unittest discover -v tests
+
+  assignment4-argredir:
+    name: Assignment 4 – ArgRedir
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+
+      - name: Build
+        working-directory: os/lab06/04_argredir
+        run: make
+
+      - name: Run test_pip2redir.py
+        working-directory: os/lab06/04_argredir
+        run: python3 -m unittest discover -v tests
+
+  assignment4-piperedir:
+    name: Assignment 4 – PipeRedir
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+
+      - name: Build
+        working-directory: os/lab06/05_piperedir
+        run: make
+
+      - name: Run test_pip2redir.py
+        working-directory: os/lab06/05_piperedir
+        run: python3 -m unittest discover -v tests
+
+  assignment4-argredir-strict:
+    name: Assignment 4 – ArgRedir Strict
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+
+      - name: Build
+        working-directory: os/lab06/06_argredir_strict
+        run: make
+
+      - name: Run test_pip2redir.py
+        working-directory: os/lab06/06_argredir_strict
+        run: python3 -m unittest discover -v tests
+
+  assignment4-pip2redir:
+    name: Assignment 4 – Pip2Redir
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+
+      - name: Build
+        working-directory: os/lab06/07_pip2redir
+        run: make
+
+      - name: Run tests
+        working-directory: os/lab06/07_pip2redir
+        run: python3 -m unittest discover -v tests
+
+  assignment5-read-builtin:
+    name: Assignment 5 – Read Builtin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3
+
+      - name: Run tests
+        working-directory: os/lab07/01_read_builtin
+        run: |
+          chmod +x c8.sh
+          python3 -m unittest discover -v tests
+
+  assignment5-sumsum:
+    name: Assignment 5 – SumSum
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3
+
+      - name: Run tests
+        working-directory: os/lab07/02_sumsum
+        run: |
+          chmod +x sumsum.sh
+          python3 -m unittest discover -v tests
+
+  assignment6-parallel-sum-c:
+    name: Assignment 6 – Parallel Sum (C)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+      - name: Build
+        working-directory: os/lab08/01_parallel_sum/c
+        run: make
+      - name: Run tests
+        working-directory: os/lab08/01_parallel_sum/c
+        run: python3 -m unittest discover -v tests
+
+  assignment6-parallel-sum-cpp:
+    name: Assignment 6 – Parallel Sum (C++)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ python3
+      - name: Build
+        working-directory: os/lab08/01_parallel_sum/cpp
+        run: make
+      - name: Run tests
+        working-directory: os/lab08/01_parallel_sum/cpp
+        run: python3 -m unittest discover -v tests
+
+  assignment6-parallel-sum-python:
+    name: Assignment 6 – Parallel Sum (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install Python
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3
+      - name: Run tests
+        working-directory: os/lab08/01_parallel_sum/python
+        run: python3 -m unittest discover -v tests
+
+  assignment7-proc:
+    name: Assignment 7 – Proc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3 coreutils
+
+      - name: Build
+        working-directory: os/lab09/01_proc
+        run: make
+
+      - name: Run tests
+        working-directory: os/lab09/01_proc
         run: python3 -m unittest discover -v tests
