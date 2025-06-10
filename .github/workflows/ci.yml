@@ -414,3 +414,112 @@ jobs:
       - name: Run tests
         working-directory: os/lab09/03_catchsig
         run: python3 -m unittest discover -v tests
+
+  assignment7-childctl:
+    name: Assignment 7 – ChildCtl
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+
+      - name: Build
+        working-directory: os/lab09/04_childctl
+        run: make
+
+      - name: Run tests
+        working-directory: os/lab09/04_childctl
+        run: python3 -m unittest discover -v tests
+
+  assignment7-childctl-3x:
+    name: Assignment 7 – ChildCtl (3 signals)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+
+      - name: Build
+        working-directory: os/lab09/05_childctl_3x
+        run: make
+
+      - name: Run tests
+        working-directory: os/lab09/05_childctl_3x
+        run: python3 -m unittest discover -v tests
+
+  assignment7-sendmq:
+    name: Assignment 7* – SendMQ
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3
+
+      - name: Build
+        working-directory: os/lab09/06_sendmq
+        run: make
+
+      - name: Run tests
+        working-directory: os/lab09/06_sendmq
+        run: python3 -m unittest discover -v tests
+
+  assignment7-mqserver:
+    name: Assignment 7* – MQServer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc make python3
+
+      - name: Build
+        working-directory: os/lab09/07_mqserver
+        run: |
+          make
+          make -C manual
+
+      - name: Run tests
+        working-directory: os/lab09/07_mqserver
+        run: python3 -m unittest discover -v tests
+
+  assignment7-mqsignal:
+    name: Assignment 7* – MQSignal
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc make python3
+
+      - name: Build
+        working-directory: os/lab09/08_mqsignal
+        run: |
+          make
+          make -C manual
+
+      - name: Run tests
+        working-directory: os/lab09/08_mqsignal
+        run: python3 -m unittest discover -v tests
