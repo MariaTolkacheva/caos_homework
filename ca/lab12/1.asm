@@ -38,27 +38,27 @@ loop:
     li      t0, 1
     sb      t0, 0x12(s0)
     lb      t1, 0x14(s0)
-    bnez    t1, pressed
+    bnez    t1, keyb
 
     li      t0, 2
     sb      t0, 0x12(s0)
     lb      t1, 0x14(s0)
-    bnez    t1, pressed
+    bnez    t1, keyb
 
     li      t0, 4
     sb      t0, 0x12(s0)
     lb      t1, 0x14(s0)
-    bnez    t1, pressed
+    bnez    t1, keyb
 
     li      t0, 8
     sb      t0, 0x12(s0)
     lb      t1, 0x14(s0)
-    bnez    t1, pressed
+    bnez    t1, keyb
 
     li      s2, 0
     j       loop
 
-pressed:
+keyb:
     beq     t1, s2, loop
     mv      s2, t1
     andi    t2, t1, 15
@@ -172,21 +172,21 @@ case8:
 
 conv:
     li      a1, 1
-    bne     a0, a1, if1
+    bne     a0, a1, cond1
     jalr    zero, 0(ra)
 
-if1:
+cond1:
     li      a1, 2
-    bne     a0, a1, if2
+    bne     a0, a1, cond2
     li      a0, 2
     jalr    zero, 0(ra)
 
-if2:
+cond2:
     li      a1, 4
-    bne     a0, a1, if4
+    bne     a0, a1, cond4
     li      a0, 3
     jalr    zero, 0(ra)
 
-if4:
+cond4:
     li      a0, 4
     jalr    zero, 0(ra)
